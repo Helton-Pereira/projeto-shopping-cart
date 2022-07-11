@@ -8,6 +8,8 @@ const fetchProducts = async (productName) => {
     return data;
 };
 
+// fetchProducts('computador');
+
 if (typeof module !== 'undefined') {
   module.exports = {
     fetchProducts,
