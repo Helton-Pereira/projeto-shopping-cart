@@ -24,7 +24,7 @@ describe('1 - Teste a função fetchProducts', () => {
     expect(x).toEqual(computadorSearch);
   });
   it('should return an error message if not argument is provided', async () => {
-    // expect.assertions(1);
+    expect.assertions(1);
     try {
       await fetchProducts()
     } catch (error) {
