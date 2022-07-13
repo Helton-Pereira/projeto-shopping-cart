@@ -8,7 +8,7 @@ describe('3 - Teste a função saveCartItems', () => {
     saveCartItems('<ol><li>Item</li></ol>');
     expect(localStorage.setItem).toBeCalled();
   });
-  it('should...', () => {
+  it('should call localStorage.setItem with two arguments', () => {
     saveCartItems('<ol><li>Item</li></ol>')
     expect(localStorage.setItem).toBeCalledWith('cartItems', '<ol><li>Item</li></ol>')
   });
