@@ -57,7 +57,6 @@ const getSavedItemsAddToShoppingCart = (localItems) => {
   const savedItems = getSavedCartItems(localItems);
   cartItem.innerHTML = savedItems;
   cartItem.addEventListener('click', cartItemClickListener);
-  
 };
 
 // getSavedItemsAddToShoppingCart();
