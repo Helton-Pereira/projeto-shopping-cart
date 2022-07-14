@@ -34,6 +34,7 @@ const addProductToShoppingCart = async (skuId) => {
   name: `${product.title}`,
   salePrice: `${product.price}` });
   cartItem.appendChild(result);
+  saveCartItems(cartItem.innerHTML);
 };
 
 const createProductItemElement = ({ sku, name, image }) => {
@@ -49,9 +50,20 @@ const createProductItemElement = ({ sku, name, image }) => {
     const skuId = getSkuFromProductItem(section);
     addProductToShoppingCart(skuId);
 });
-
   return section;
 };
+
+const getSavedItemsAddToShoppingCart = (localItems) => {
+  const cartItem = document.querySelector('.cart__items');
+  const savedItems = getSavedCartItems(localItems);
+  const li = document.createElement('li');
+  li.className = 'cart__item';
+  li.innerHTML = savedItems;
+  li.addEventListener('click', cartItemClickListener);
+  cartItem.appendChild(li);
+};
+
+// getSavedItemsAddToShoppingCart();
 
 const listOfProducts = async (productName) => {
   const items = document.querySelector('.items');
@@ -65,4 +77,21 @@ const listOfProducts = async (productName) => {
   }); 
 };
 
-window.onload = () => { listOfProducts('computador'); };
+const removeItemsInCart = () => {
+  const shoppingCart = document.querySelector('.cart__items');
+  shoppingCart.innerHTML = '';
+};
+
+const clearShoppingCart = () => {
+  const button = document.querySelector('.empty-cart');
+  button.addEventListener('click', () => {
+    localStorage.removeItem('cartItems');
+    removeItemsInCart();
+  });
+};
+
+window.onload = () => {
+  listOfProducts('computador');
+  getSavedItemsAddToShoppingCart('cartItems');
+  clearShoppingCart();
+};
